@@ -1,13 +1,10 @@
-package com.soonworld.baram;
-
+package com.soonworld.gateway;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BaramApplication {
-
+public class GatewayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(BaramApplication.class, args);
+        SpringApplication.run(GatewayApplication.class, args);
     }
-
 }
