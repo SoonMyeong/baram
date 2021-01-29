@@ -42,7 +42,7 @@
                         <td rowspan="2" class='td-name'>추가 <br>재료</td>
                         <td>강화비급</td>
                         <td>
-                            <input type="checkbox" name="강화비급" id="" v-model="upgradeAdd" :true-value="5" :false-value="0"  style="background-color:black;" >
+                            <input type="checkbox" name="강화비급" id="" v-model="upgradeAdd" :true-value="3" :false-value="0"  style="background-color:black;" >
                         </td>
                     </tr>
                     <tr>
@@ -66,16 +66,24 @@
                 </tbody>
             </table>
 
-            <center><b-button variant="danger" class="search-btn">강 화</b-button></center>
-
+            <center><b-button variant="danger" class="search-btn" @click="showModal = true">강 화</b-button></center>
+            <Upgrade v-if="showModal"/>              
         </div>
     </div>
 </template>
 <script>
+import Upgrade from "./Upgrade"
+import EventBus from "../routes/EventBus";
 export default {
+     components:{Upgrade},
      props:{
       name: String,
       rank: String
+     },
+     created(){
+         EventBus.$on('close-modal',(payload)=>{
+             this.showModal = payload;
+         });
      },
      methods: {
          onChange(event) {
@@ -106,6 +114,7 @@ export default {
      },
      data() {
       return {   
+        showModal: false,
         upgradePercent: 100,
         upgradeAdd: '0',  
         selected: 0,
