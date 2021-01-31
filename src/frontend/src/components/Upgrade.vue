@@ -1,11 +1,9 @@
 <template>
-    <div class="customModal">
-    <div class="customModalTitle">      
-    </div>
-    <div class="customModalBody">
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam tenetur veritatis saepe natus? Ex sunt, maxime quod hic repudiandae incidunt eligendi autem dignissimos mollitia, vel laborum quasi expedita ullam voluptate veniam nesciunt sequi est necessitatibus. Eum repellat nam animi laudantium?</p>
-         <button class="close" @click="closeModal()">&times;</button>
-    </div>
+  <div class="customModal" @click="closeModal()">
+      <center>
+        <img src="../assets/upgrade-base.png" alt="">
+        <img id="hammer" src="../assets/망치.png" alt="">
+      </center>
   </div>
 </template>
 
@@ -15,34 +13,42 @@ import EventBus from "../routes/EventBus";
 export default {
   data(){
     return{
+      click : false
     }
   },
+  created(){
+    this.start();
+  },
   methods:{
+    start(){
+      setTimeout( () =>{ 
+        this.click = true;
+      },1000)
+    },
     closeModal(){
-      EventBus.$emit('close-modal',false);
+      if(this.click){
+        EventBus.$emit('close-modal',false);
+      }
     }
   }
 }
 </script>
 
 <style>
-.customModal {
-  box-shadow: 0px 1px 12px rgba(0,0,0,0.4);
-  position: absolute;
-  z-index: 999;
-  width: 100%;
-  height: 100%;
-  top: 0vh;
-  border-radius: 5px;
-  overflow: hidden;
-} 
-  
-.customModalBody {
-    background-color: #fff;
-    padding: 8px 12px;
-    text-align: left;
-    padding: 12px;
-    height: 100%;
+.customModal {background-color: #000; position: absolute; z-index: 997; width: 400px; height: 100%; top: 0vh; overflow: hidden;} 
+.customModal img {position: relative; z-index: 998; margin:60% 0 auto; width:200px; height:200px;}
+.customModal #hammer {
+position: absolute; z-index: 998; width:130px; height:180px; top: -100px; margin-left: 20px;
+animation: target_image 1s; 
+animation-iteration-count: 1;
+transform-origin: 25% 100%;
+animation-fill-mode: forwards;
+}
+
+@keyframes target_image {
+0% { transform: rotate(-10deg); }
+50% { transform: rotate(15deg) }
+100% { transform: rotate(-90deg); }
 }
 </style>
 
