@@ -58,18 +58,20 @@ export default {
     },
     searchItem(){
       let check = false;
-      let ranked = '';    
+      let ranked = '';
+      let url = '';    
       for(let i in this.list){           
         if(this.query == this.list[i].name){
           check = true;
-          ranked = this.list[i].rank;      
+          ranked = this.list[i].rank;
+          url = this.list[i].url;      
         }
       }
       
       if(!check){
         alert("현재 준비되지 않은 장비 입니다. 다시 입력 해 주세요");
       }else{
-        this.$router.push({name:'itemInfo', query:{name: this.query , rank: ranked}});
+        this.$router.push({name:'itemInfo', query:{name: this.query , rank: ranked , url: url}});
       }    
     }
   },

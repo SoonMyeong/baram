@@ -91,9 +91,15 @@ export default {
      },
      methods: {
          onChange(event) {
-               if(event==0 ||event==1 || event==2){
+               if(event==0){
                    this.upgradePercent = 100;
-                   this.currentItemLevel = 1;
+                   this.currentItemLevel = 0;
+                }else if(event==1){
+                   this.upgradePercent = 100;
+                   this.currentItemLevel = 1;                       
+                }else if(event==2){
+                   this.upgradePercent = 100;
+                   this.currentItemLevel = 2;                   
                }else if(event==3){
                    this.upgradePercent = 90;
                    this.currentItemLevel = 3;                   
