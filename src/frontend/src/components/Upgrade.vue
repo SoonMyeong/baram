@@ -6,7 +6,7 @@
         <img v-if="showSuccess" src="../assets/success.gif" alt="">
         <img v-if="showFail" src="../assets/fail.gif" alt="">       
         <p v-if="successMessage" style="padding-top:60%; height:100%; color:white;" @click="exit()">
-          강화 성공 , 촉진제 사용 결과: {{resultItemAddLevel}} == 2 ? 성공:실패</p>
+          강화 성공 , 촉진제 사용 결과: {{resultItemAddLevel}} </p>
         <p v-if="failMessage" style="padding-top:60%; height:100%; color:white;" @click="exit()">강화 실패</p>
       </center>
   </div>
@@ -47,12 +47,14 @@ export default {
 
       if(this.upgradeResult){
         this.showSuccess = true;
+        this.showFail = false;
         setTimeout( () =>{ 
           this.showSuccess = false;
           this.successMessage = true;
         },500);
       }else{
         this.showFail = true;
+        this.showSuccess = false;
         setTimeout( () =>{ 
           this.showFail = false;
           this.failMessage = true;
@@ -60,6 +62,8 @@ export default {
       }     
     },
     exit(){
+      this.successMessage = false;
+      this.failMessage = false;
       EventBus.$emit('close-modal',false);
     }
   }

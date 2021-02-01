@@ -147,7 +147,6 @@ export default {
                 }).catch(() =>{                 
                     alert("에러 발생");
                 })
-                this.showModal = true;
              }        
          }
      },
