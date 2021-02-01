@@ -4,7 +4,9 @@ import BootstrapVue from 'bootstrap-vue'
 import {router} from '@/routes/routes.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import axios from 'axios';
 
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
 

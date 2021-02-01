@@ -2,7 +2,7 @@
   <div class="customModal" @click="closeModal()">
       <center>
         <img src="../assets/upgrade-base.png" alt="">
-        <img id="hammer" src="../assets/망치.png" alt="">
+        <img id="hammer" src="../assets/hammer.png" alt="">
       </center>
   </div>
 </template>
@@ -11,6 +11,10 @@
 <script>
 import EventBus from "../routes/EventBus";
 export default {
+  props:{
+      upgradeResult : Boolean,
+      resultItemAddLevel : Number            
+  },
   data(){
     return{
       click : false
@@ -24,7 +28,7 @@ export default {
       setTimeout( () =>{ 
         this.click = true;
       },1000)
-    },
+    },    
     closeModal(){
       if(this.click){
         EventBus.$emit('close-modal',false);

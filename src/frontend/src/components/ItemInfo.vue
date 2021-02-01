@@ -4,7 +4,10 @@
             <div class='upgrade-title'>강 화</div>
             <br>
             <center>
-                <img src="https://picsum.photos/600/300/?image=25" alt="">
+                <img :src="url" alt=""
+                    v-if="rank== '희귀'" style=" border: 5px solid lightblue">
+                <img :src="url" alt=""
+                    v-else-if="rank== '보물'" style=" border: 5px solid purple">
             </center>
             <p>
                 <span v-if="rank == '희귀'" style="color:lightblue">[{{rank}}]</span>
@@ -48,7 +51,7 @@
                     <tr>
                         <td>강화촉진제</td>
                         <td>
-                            <input type="checkbox" name="강화촉진제" id="upgrade-plus">
+                            <input type="checkbox" name="강화촉진제" v-model="upgradeDoubleItemUsed">
                         </td>
                     </tr>
                 </tbody>
@@ -66,8 +69,8 @@
                 </tbody>
             </table>
 
-            <center><b-button variant="danger" class="search-btn" @click="showModal = true">강 화</b-button></center>
-            <Upgrade v-if="showModal"/>              
+            <center><b-button variant="danger" class="search-btn" @click="upgradeItem()">강 화</b-button></center>
+            <Upgrade v-if="showModal" :upgradeResult="this.upgradeResult" :resultItemAddLevel="this.resultItemAddLevel"/>              
         </div>
     </div>
 </template>
@@ -78,7 +81,8 @@ export default {
      components:{Upgrade},
      props:{
       name: String,
-      rank: String
+      rank: String,
+      url: String
      },
      created(){
          EventBus.$on('close-modal',(payload)=>{
@@ -89,34 +93,67 @@ export default {
          onChange(event) {
                if(event==0 ||event==1 || event==2){
                    this.upgradePercent = 100;
+                   this.currentItemLevel = 1;
                }else if(event==3){
                    this.upgradePercent = 90;
+                   this.currentItemLevel = 3;                   
                }else if (event==4){
                    this.upgradePercent = 80;
+                   this.currentItemLevel = 4;
                }else if(event==5){
                    this.upgradePercent = 70;
+                   this.currentItemLevel = 5;
                }else if(event==6){
                    this.upgradePercent = 60;
+                   this.currentItemLevel = 6;
                }else if(event==7){
                    this.upgradePercent = 50;
+                   this.currentItemLevel = 7;
                }else if(event==8){
                    this.upgradePercent = 40;
+                   this.currentItemLevel = 8;
                }else if(event==9){
                    this.upgradePercent = 30;
+                   this.currentItemLevel = 9;
                }else if(event==10){
                    this.upgradePercent = 20;
+                   this.currentItemLevel = 10;
                }else if(event==11){
                    this.upgradePercent = 15;
+                   this.currentItemLevel = 11;
                }else if(event==12){
-                   this.upgradePercent = 12;
+                   this.upgradePercent = 10;
+                   this.currentItemLevel = 12;
                }
+         },
+         upgradeItem(){
+             if(this.currentItemLevel==0){
+                alert("레벨을 선택 해 주세요.");
+             }else{
+                // this.$axios.post('/upgrade',
+                // {currentItemLevel: this.currentItemLevel,
+                // upgradeItemUsed: this.upgradeAdd =='0' ? false:true,
+                // upgradeDoubleItemUsed: this.upgradeDoubleItemUsed             
+                // }).then(res =>{
+                //     this.showModal = true;
+                //     this.upgradeResult = res.data.upgradeResult;
+                //     this.resultItemAddLevel = res.data.resultItemAddLevel;
+                // }).catch(() =>{                 
+                //     alert("에러 발생");
+                // })
+                this.showModal = true;
+             }        
          }
      },
      data() {
       return {   
         showModal: false,
+        currentItemLevel : 0, //
+        upgradeDoubleItemUsed : false, //
+        upgradeAdd: '0',  //
+        upgradeResult: false, //
+        resultItemAddLevel: 0, //
         upgradePercent: 100,
-        upgradeAdd: '0',  
         selected: 0,
         options: [
           { value: 0, text: 'Level' },
@@ -156,7 +193,7 @@ export default {
  .wrap2 .table2 .td-name{text-align: center; background-color: black;}
  .wrap2 .table2 .td-number{text-align: center;}
 
- .wrap2 img{margin:0 auto; padding:1px 1px; width: 100px; height:100px; border: 5px solid purple;}
+ .wrap2 img{margin:0 auto; padding:1px 1px; width: 100px; height:100px;}
  .wrap2 p{margin:0 auto; padding:5px 5px; text-align: center; color: white;}
  .wrap2 button{margin-top:5px; width:200px;}
 </style>

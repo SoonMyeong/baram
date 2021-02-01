@@ -20,7 +20,8 @@ export const router = new VueRouter({
             name:'itemInfo',
             props: route=> ({
                 name: String(route.query.name),
-                rank: String(route.query.rank)
+                rank: String(route.query.rank),
+                url : String(route.query.url)
             })
         }
     ]
