@@ -1,13 +1,13 @@
 <template>
-  <div class="customModal">
+  <div  class="customModal" >
       <center>
         <img v-if="showStart" src="../assets/upgrading.gif" alt="">
         <img v-if="showLoading" src="../assets/loading.gif" alt="" @click="resultModal()">
         <img v-if="showSuccess" src="../assets/success.gif" alt="">
         <img v-if="showFail" src="../assets/fail.gif" alt="">       
-        <p v-if="successMessage" style="padding-top:60%; height:100%; color:white;" @click="exit()">
+        <p v-if="successMessage" @click="exit()">
           강화 성공 , 촉진제 사용 결과: {{resultItemAddLevel}} </p>
-        <p v-if="failMessage" style="padding-top:60%; height:100%; color:white;" @click="exit()">강화 실패</p>
+        <p v-if="failMessage" @click="exit()">강화 실패</p>
       </center>
   </div>
 </template>
@@ -71,8 +71,9 @@ export default {
 </script>
 
 <style>
-.customModal {background-color: #000; position: absolute; z-index: 997; width: 400px; height: 100%; top: 0vh; overflow: hidden;} 
-.customModal img {position: relative; z-index: 998; margin:0 0 auto; width:400px; height:100%;}
+.customModal {background-color: #000; position: absolute; z-index: 997; width: 400px; top: 0vh; height: 100%; overflow: hidden;} 
+.customModal img {position: absolute; z-index: 998; left: 0vh; width:400px; height:100%;}
+.customModal p {position: absolute; z-index: 999; padding-top:60%; width: 400px; height:100%; color:white; font-size:30px;}
 /* .customModal #hammer {
 position: absolute; z-index: 998; width:130px; height:180px; top: -100px; margin-left: 20px;
 animation: target_image 1s; 
