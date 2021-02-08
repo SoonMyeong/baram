@@ -6,8 +6,9 @@
         <img v-if="showSuccess" src="../assets/success.gif" alt="">
         <img v-if="showFail" src="../assets/fail.gif" alt="">       
         <p v-if="successMessage" @click="exit()">
-          강화 성공 , 촉진제 사용 결과: {{resultItemAddLevel}} </p>
+          강화 성공 , 장비레벨: +{{resultItemAddLevel}} </p>
         <p v-if="failMessage" @click="exit()">강화 실패</p>
+        <p v-if="keepMessage" @click="exit()">강화 유지</p>
       </center>
   </div>
 </template>
@@ -27,7 +28,8 @@ export default {
       showSuccess : false,
       showFail : false,
       successMessage : false,
-      failMessage : false
+      failMessage : false,
+      keepMessage : false
     }
   },
   created(){
@@ -53,17 +55,27 @@ export default {
           this.successMessage = true;
         },500);
       }else{
-        this.showFail = true;
-        this.showSuccess = false;
-        setTimeout( () =>{ 
-          this.showFail = false;
-          this.failMessage = true;
-        },500);
+        if(this.resultItemAddLevel==-1){
+          this.showFail = true;
+          this.showSuccess = false;
+          setTimeout( () =>{ 
+            this.showFail = false;
+            this.failMessage = true;
+          },500);
+        }else{
+          this.showFail = true;
+          this.showSuccess = false;
+          setTimeout( () =>{ 
+            this.showFail = false;
+            this.keepMessage = true;
+          },500);
+        }
       }     
     },
     exit(){
       this.successMessage = false;
       this.failMessage = false;
+      this.keepMessage = false;
       EventBus.$emit('close-modal',false);
     }
   }
@@ -73,7 +85,7 @@ export default {
 <style>
 .customModal {background-color: #000; position: absolute; z-index: 997; width: 400px; top: 0vh; height: 100%; overflow: hidden;} 
 .customModal img {position: absolute; z-index: 998; left: 0vh; width:400px; height:100%;}
-.customModal p {position: absolute; z-index: 999; padding-top:60%; width: 400px; height:100%; color:white; font-size:30px;}
+.customModal p {position: absolute; z-index: 999; padding-top:60%; width: 400px; height:100%; color:white; font-size:25px;}
 /* .customModal #hammer {
 position: absolute; z-index: 998; width:130px; height:180px; top: -100px; margin-left: 20px;
 animation: target_image 1s; 

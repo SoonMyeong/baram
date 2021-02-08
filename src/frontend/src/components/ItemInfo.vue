@@ -136,18 +136,17 @@ export default {
              if(this.currentItemLevel==0){
                 alert("레벨을 선택 해 주세요.");
              }else{
-                // this.$axios.post('/upgrade',
-                // {currentItemLevel: this.currentItemLevel,
-                // upgradeItemUsed: this.upgradeAdd =='0' ? false:true,
-                // upgradeDoubleItemUsed: this.upgradeDoubleItemUsed             
-                // }).then(res =>{
-                //     this.showModal = true;
-                //     this.upgradeResult = res.data.upgradeResult;
-                //     this.resultItemAddLevel = res.data.resultItemAddLevel;
-                // }).catch(() =>{                 
-                //     alert("에러 발생");
-                // })
-                this.showModal = true;
+                this.$axios.post('/upgrade',
+                {currentItemLevel: this.currentItemLevel,
+                upgradeItemUsed: this.upgradeAdd =='0' ? false:true,
+                upgradeDoubleItemUsed: this.upgradeDoubleItemUsed             
+                }).then(res =>{
+                    this.showModal = true;
+                    this.upgradeResult = res.data.upgradeResult;
+                    this.resultItemAddLevel = res.data.resultItemAddLevel;
+                }).catch(() =>{                 
+                    alert("에러 발생");
+                })
              }        
          }
      },
