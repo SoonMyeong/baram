@@ -25,7 +25,11 @@ export const router = new VueRouter({
             path:'/itemInfo',
             component : ItemInfo,
             name:'itemInfo',
-            props: true
+            props: route=> ({
+                name: String(route.query.name),
+                rank: String(route.query.rank),
+                url: String(route.query.url)
+            })
         }
     ]
 });

@@ -2,7 +2,7 @@
     <div>
         <div class='wrap2'>        
             <div class='upgrade-title'> 
-                <img src="..\assets\back.png" @click="$router.go(-1)" style="width:30px; height:30px;">
+                <img src="..\assets\back.png" @click="$router.replace('/')" style="width:30px; height:30px;">
                  강 화
             </div>
             <br>
