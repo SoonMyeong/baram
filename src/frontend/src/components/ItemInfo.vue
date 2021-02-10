@@ -1,7 +1,10 @@
 <template>
     <div>
-        <div class='wrap2'>
-            <div class='upgrade-title'>강 화</div>
+        <div class='wrap2'>        
+            <div class='upgrade-title'> 
+                <img src="..\assets\back.png" @click="$router.go(-1)" style="width:30px; height:30px;">
+                 강 화
+            </div>
             <br>
             <center>
                 <img :src="url" alt=""
@@ -181,8 +184,8 @@ export default {
 </script>
 
 <style scoped>
- .wrap2 .upgrade-title{background: linear-gradient(to bottom, #E09B58,#864C1C); text-align: center; color: white;}
- .wrap2 .title2{width:100%; margin: 0 auto; margin-bottom: 10px; background-color:#FFA500;}
+ .wrap2 .upgrade-title{background: linear-gradient(to bottom, #804C29,#CB8345); text-align: left; color: white;}
+ .wrap2 .title2{width:100%; margin: 0 auto; margin-bottom: 10px; background-color:#CB8345;}
  .wrap2 .count{width:100px; height: 40px; text-align: center;}
 
  .wrap2 .table1{width:100%; color: white;}
