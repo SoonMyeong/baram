@@ -1,4 +1,5 @@
 module.exports={
    outputDir: "../main/resources/static",
-   indexPath: "../static/index.html"
+   indexPath: "../static/index.html",
+   productionSourceMap: false
 }
