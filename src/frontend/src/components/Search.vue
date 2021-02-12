@@ -52,7 +52,7 @@ export default {
     },
     selectItem(){
       this.selectedItem = this.matches[this.selected];
-      console.log(this.selectedItem[this.name]);
+      //console.log(this.selectedItem[this.name]);
       this.query = this.selectedItem[this.name];
       this.toggle();
     },

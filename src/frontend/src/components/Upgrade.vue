@@ -33,8 +33,8 @@ export default {
     }
   },
   created(){
-    console.log(this.upgradeResult);
-    console.log(this.resultItemAddLevel);
+    // console.log(this.upgradeResult);
+    // console.log(this.resultItemAddLevel);
     this.start();
   },
   methods:{
