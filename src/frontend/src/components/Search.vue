@@ -71,7 +71,7 @@ export default {
       if(!check){
         alert("현재 준비되지 않은 장비 입니다. 다시 입력 해 주세요");
       }else{
-        this.$router.push({name:'itemInfo', query:{name: this.query , rank: ranked , url: url}});
+        this.$router.push({name:'itemInfo', params:{name: this.query , rank: ranked , url: url}});
       }    
     }
   },
